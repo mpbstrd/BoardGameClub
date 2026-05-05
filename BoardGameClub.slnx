@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="BoardGameClub.Api/BoardGameClub.Api.csproj" />
+  <Project Path="BoardGameClub.Application/BoardGameClub.Application.csproj" />
+  <Project Path="BoardGameClub.Domain/BoardGameClub.Domain.csproj" />
+  <Project Path="BoardGameClub.Infrastructure/BoardGameClub.Infrastructure.csproj" />
+  <Project Path="BoardGameClub.Shared/BoardGameClub.Shared.csproj" />
+</Solution>
