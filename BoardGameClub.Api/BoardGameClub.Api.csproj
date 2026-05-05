@@ -18,12 +18,19 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BoardGameClub.Application\BoardGameClub.Application.csproj" />
     <ProjectReference Include="..\BoardGameClub.Infrastructure\BoardGameClub.Infrastructure.csproj" />
     <ProjectReference Include="..\BoardGameClub.Shared\BoardGameClub.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>
