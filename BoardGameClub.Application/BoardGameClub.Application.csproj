@@ -6,8 +6,7 @@
 	<Folder Include="Features\Games\AddGame\" />
 	<Folder Include="Features\Games\GetGames\" />
 	<Folder Include="Features\Games\UpdateGame\" />
-	<Folder Include="Features\Members\CreateMember\" />
-	<Folder Include="Features\Members\GetMembers\" />
+	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
 	<Folder Include="Features\Sessions\UpdateSession\" />

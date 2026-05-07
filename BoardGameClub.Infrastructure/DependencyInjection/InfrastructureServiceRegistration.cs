@@ -1,4 +1,5 @@
-﻿using BoardGameClub.Application.Interfaces;
+﻿using BoardGameClub.Application.Features.Members.CreateMember;
+using BoardGameClub.Application.Interfaces;
 using BoardGameClub.Infrastructure.Persistence;
 using BoardGameClub.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,9 @@ namespace BoardGameClub.Infrastructure.DependencyInjection
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("fbgcdb")));
+                    configuration.GetConnectionString("bgcdb")));
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateMemberCommand).Assembly));
 
             AddBggClient(services);
             AddRepositories(services);
