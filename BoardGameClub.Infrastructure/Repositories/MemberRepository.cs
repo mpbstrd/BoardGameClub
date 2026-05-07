@@ -1,9 +1,6 @@
 ﻿using BoardGameClub.Application.Interfaces;
-using BoardGameClub.Infrastructure.DependencyInjection;
 using BoardGameClub.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 using DomainMember = BoardGameClub.Domain.Entities.Member;
 using DbMember = BoardGameClub.Infrastructure.Persistence.Scaffolded.Member;
 
@@ -17,6 +14,21 @@ namespace BoardGameClub.Infrastructure.Repositories
         public MemberRepository(AppDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<DomainMember>> GetAllAsync()
+        {
+            List<DbMember> records = await _context.Members.Where(x => x.Status == "active").ToListAsync();
+
+            return [.. records.Select(record => new DomainMember
+            {
+                Id = record.Id,
+                PublicId = record.PublicId,
+                Name = record.Name,
+                Status = (record.Status ?? "active") == "active",
+                CreatedAt = record.CreatedAt,
+                UpdatedAt = record.UpdatedAt
+            })];
         }
 
         public async Task<DomainMember?> GetByIdAsync(Guid id)
@@ -35,6 +47,22 @@ namespace BoardGameClub.Infrastructure.Repositories
                 CreatedAt = record.CreatedAt,
                 UpdatedAt = record.UpdatedAt
             };
+        }
+
+        public async Task CreateMemberAsync(DomainMember member)
+        {
+            var dbMember = new DbMember
+            {
+                Id = member.Id,
+                PublicId = member.PublicId,
+                Name = member.Name,
+                Status = member.Status ? "active" : "inactive",
+                CreatedAt = member.CreatedAt,
+                UpdatedAt = member.UpdatedAt
+            };
+
+            _context.Members.Add(dbMember);
+            await _context.SaveChangesAsync();
         }
     }
 }

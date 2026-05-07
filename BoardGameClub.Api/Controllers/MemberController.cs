@@ -1,36 +1,40 @@
-﻿using BoardGameClub.Infrastructure.Persistence;
-using BoardGameClub.Infrastructure.Persistence.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using BoardGameClub.Application.Features.Members.GetMemberById;
+using BoardGameClub.Application.Features.Members.GetMembers;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BoardGameClub.Api.Controllers
 {
-    [Route("api/member")]
     [ApiController]
-    public class MemberController(AppDbContext context) : ControllerBase
+    [Route("api/[controller]")]
+    public class MemberController : ControllerBase
     {
+        private readonly IMediator _mediator;
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        public MemberController(IMediator mediator)
         {
-            var data = await context.members.ToListAsync();
-
-            return Ok(new
-            {
-                data
-            });
+            _mediator = mediator;
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> Add(member member)
+        [HttpGet]
+        public async Task<IActionResult> GetMembers()
         {
-            context.members.Add(member);
-            await context.SaveChangesAsync();
-            return Ok(new
+            var result = await _mediator.Send(new GetMembersQuery());
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMemberById(Guid id)
+        {
+            var result = await _mediator.Send(new GetMemberByIdQuery
             {
-                data = member
+                Id = id
             });
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }
