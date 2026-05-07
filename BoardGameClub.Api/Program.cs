@@ -1,29 +1,11 @@
-using BoardGameClub.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using BoardGameClub.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add controllers
 builder.Services.AddControllers();
-builder.Services.AddHttpClient("bgg", client =>
-{
-    //client.DefaultRequestHeaders.UserAgent.ParseAdd(
-    //    "BoardGameClubApi/1.0 (matthewperrybustarde@gmail.com)"
-    //);
 
-    client.DefaultRequestHeaders.TryAddWithoutValidation(
-       "User-Agent",
-       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36"
-   );
-
-    client.DefaultRequestHeaders.TryAddWithoutValidation(
-        "Accept",
-        "application/xml"
-    );
-});
-
-// Swagger services
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new()
@@ -33,21 +15,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("fbgcdb")));
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
-// Enable Swagger only in development (recommended)
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
 
 app.UseHttpsRedirection();
 
