@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameClub.Api.Controllers
 {
@@ -7,13 +6,32 @@ namespace BoardGameClub.Api.Controllers
     [ApiController]
     public class BoardGameController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly HttpClient _httpClient;
+
+        public BoardGameController(IHttpClientFactory factory)
         {
-            return Ok(new
+            _httpClient = factory.CreateClient("bgg");
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBoardGame(int id)
+        {
+            var url = $"https://boardgamegeek.com/xmlapi2/thing?id={id}&stats=1";
+
+            var response = await _httpClient.GetAsync(url);
+            var body = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
             {
-                data = "Hello World"
-            });
+                return StatusCode((int)response.StatusCode, new
+                {
+                    error = "BGG request failed",
+                    status = response.StatusCode,
+                    body
+                });
+            }
+
+            return Content(body, "application/xml");
         }
     }
 }
