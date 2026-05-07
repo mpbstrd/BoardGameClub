@@ -11,9 +11,9 @@
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
 	<Folder Include="Features\Sessions\UpdateSession\" />
-	<Folder Include="Interfaces\" />
 	<Folder Include="DTOs\" />
 	<Folder Include="Common\" />
+	<Folder Include="Interfaces\" />
 	<Folder Include="Validators\" />
   </ItemGroup>
 
