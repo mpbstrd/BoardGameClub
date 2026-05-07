@@ -9,13 +9,16 @@
 	<Folder Include="Features\Members\CreateMember\" />
 	<Folder Include="Features\Members\GetMembers\" />
 	<Folder Include="Features\Members\UpdateMember\" />
-	<Folder Include="Features\Sessions\CreateSession\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
 	<Folder Include="Features\Sessions\UpdateSession\" />
 	<Folder Include="Interfaces\" />
 	<Folder Include="DTOs\" />
 	<Folder Include="Common\" />
 	<Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.1.0" />
   </ItemGroup>
 
   <PropertyGroup>
