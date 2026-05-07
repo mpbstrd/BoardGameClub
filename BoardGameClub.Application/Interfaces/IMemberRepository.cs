@@ -6,6 +6,6 @@ namespace BoardGameClub.Application.Interfaces
     {
         Task<Member?> GetByIdAsync(Guid id);
         Task<List<Member>> GetAllAsync();
-        Task CreateMemberAsync(Member member);
+        Task CreateAsync(Member member);
     }
 }

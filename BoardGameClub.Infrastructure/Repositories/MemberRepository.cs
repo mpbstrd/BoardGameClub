@@ -18,7 +18,7 @@ namespace BoardGameClub.Infrastructure.Repositories
 
         public async Task<List<DomainMember>> GetAllAsync()
         {
-            List<DbMember> records = await _context.Members.Where(x => x.Status == "active").ToListAsync();
+           List<DbMember> records = await _context.Members.Where(x => x.Status == "active").ToListAsync();
 
             return [.. records.Select(record => new DomainMember
             {
@@ -49,7 +49,7 @@ namespace BoardGameClub.Infrastructure.Repositories
             };
         }
 
-        public async Task CreateMemberAsync(DomainMember member)
+        public async Task CreateAsync(DomainMember member)
         {
             var dbMember = new DbMember
             {
