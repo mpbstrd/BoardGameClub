@@ -43,6 +43,7 @@ namespace BoardGameClub.Infrastructure.DependencyInjection
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IBoardGameRepository, BoardGameRepository>();
         }
     }
 }

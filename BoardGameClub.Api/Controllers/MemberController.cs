@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BoardGameClub.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/member")]
     public class MemberController : ControllerBase
     {
         private readonly IMediator _mediator;
