@@ -24,7 +24,7 @@ namespace BoardGameClub.Application.Features.Members.CreateMember
                 Status = true
             };
 
-            await _repo.CreateMemberAsync(member);
+            await _repo.CreateAsync(member);
 
             return member.Id;
         }

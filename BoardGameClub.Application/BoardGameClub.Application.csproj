@@ -3,16 +3,14 @@
   <ItemGroup>
     <ProjectReference Include="..\BoardGameClub.Domain\BoardGameClub.Domain.csproj" />
     <ProjectReference Include="..\BoardGameClub.Shared\BoardGameClub.Shared.csproj" />
-	<Folder Include="Features\Games\AddGame\" />
-	<Folder Include="Features\Games\GetGames\" />
-	<Folder Include="Features\Games\UpdateGame\" />
+	<Folder Include="Features\BoardGames\AddGame\" />
+	<Folder Include="Features\BoardGames\UpdateGame\" />
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
 	<Folder Include="Features\Sessions\UpdateSession\" />
 	<Folder Include="DTOs\" />
 	<Folder Include="Common\" />
-	<Folder Include="Interfaces\" />
 	<Folder Include="Validators\" />
   </ItemGroup>
 
