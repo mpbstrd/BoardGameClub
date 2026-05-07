@@ -1,8 +1,13 @@
 # BoardGameClub API
 - An API made for Friday Board Game Club
 
-#
 
+## Scaffolding Tool
+```
+dotnet ef dbcontext scaffold "Server=localhost;Database=bgcdb;User Id=user;Password=P@ssw0rd;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project BoardGameClub.Infrastructure --startup-project BoardGameClub.Api --output-dir Persistence/Scaffolded --context AppDbContext --force --no-onconfiguring
+```
+
+# System Architecture
 ```
 BoardGameClubApi/
 │
@@ -71,4 +76,40 @@ BoardGameClubApi/
 │   └── BoardGameClub.IntegrationTests/
 │
 └── BoardGameClub.sln
+```
+
+
+## Architecture Flow
+```
+Controller (API)
+    ↓
+CreateSessionCommand (Application)
+    ↓
+CreateSessionHandler (Application logic)
+    ↓
+Domain Entities (GameSession, Member, Game)
+    ↓
+Repositories (Interfaces in Application)
+    ↓
+Infrastructure (EF Core / DB)
+```
+
+## Key Takeaways
+```
+📌 Application/Features contains:
+Commands (CreateSessionCommand)
+Queries (GetSessionsQuery)
+Handlers (business orchestration)
+Validators
+DTOs
+Interfaces (repositories/services contracts)
+📌 Domain contains:
+GameSession rules
+Member rules
+Enums like SessionStatus
+Value objects (if needed)
+📌 Infrastructure contains:
+EF Core DbContext
+Repository implementations
+External APIs
 ```
