@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BoardGameClub.Application.Features.BoardGames.GetGames;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BoardGameClub.Api.Controllers
 {
@@ -6,32 +8,18 @@ namespace BoardGameClub.Api.Controllers
     [ApiController]
     public class BoardGameController : ControllerBase
     {
-        private readonly HttpClient _httpClient;
+        private readonly IMediator _mediator;
 
-        public BoardGameController(IHttpClientFactory factory)
+        public BoardGameController(IMediator mediator)
         {
-            _httpClient = factory.CreateClient("bgg");
+            _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetBoardGame(int id)
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            var url = $"https://boardgamegeek.com/xmlapi2/thing?id={id}&stats=1";
-
-            var response = await _httpClient.GetAsync(url);
-            var body = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-            {
-                return StatusCode((int)response.StatusCode, new
-                {
-                    error = "BGG request failed",
-                    status = response.StatusCode,
-                    body
-                });
-            }
-
-            return Content(body, "application/xml");
+            var result = await _mediator.Send(new GetGamesQuery());
+            return Ok(result);
         }
     }
 }
