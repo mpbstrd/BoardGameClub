@@ -37,5 +37,16 @@ namespace BoardGameClub.Api.Controllers
 
             return Ok(game);
         }
+
+        [HttpGet("bgg/categories")]
+        public async Task<IActionResult> GetBggCategories()
+        {
+            var game = await _bggService.GetCategoriesAsync();
+
+            if (game == null)
+                return NotFound();
+
+            return Ok(game);
+        }
     }
 }
