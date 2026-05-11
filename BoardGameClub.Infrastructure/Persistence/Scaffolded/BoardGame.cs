@@ -29,7 +29,9 @@ public partial class BoardGame
 
     public virtual ICollection<Rating> Ratings { get; set; } = new List<Rating>();
 
-    public virtual ICollection<Mechanism> Mechanisms { get; set; } = new List<Mechanism>();
+    public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
+
+    public virtual ICollection<Mechanic> Mechanics { get; set; } = new List<Mechanic>();
 
     public virtual ICollection<Publisher> Publishers { get; set; } = new List<Publisher>();
 }
