@@ -4,7 +4,7 @@
 
 ## Scaffolding Tool
 ```
-dotnet ef dbcontext scaffold "Server=localhost;Database=bgcdb;User Id=user;Password=P@ssw0rd;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project BoardGameClub.Infrastructure --startup-project BoardGameClub.Api --output-dir Persistence/Scaffolded --context AppDbContext --force --no-onconfiguring
+dotnet ef dbcontext scaffold "Server=localhost;Database=fbgcdb;User Id=user;Password=P@ssw0rd;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --project BoardGameClub.Infrastructure --startup-project BoardGameClub.Api --output-dir Persistence/Scaffolded --context AppDbContext --force --no-onconfiguring
 ```
 
 # System Architecture
