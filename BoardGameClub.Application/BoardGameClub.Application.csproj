@@ -9,7 +9,6 @@
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
 	<Folder Include="Features\Sessions\UpdateSession\" />
-	<Folder Include="DTOs\" />
 	<Folder Include="Common\" />
 	<Folder Include="Validators\" />
   </ItemGroup>

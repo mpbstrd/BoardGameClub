@@ -2,6 +2,7 @@
 using BoardGameClub.Application.Interfaces;
 using BoardGameClub.Infrastructure.Persistence;
 using BoardGameClub.Infrastructure.Repositories;
+using BoardGameClub.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace BoardGameClub.Infrastructure.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("bgcdb")));
@@ -44,6 +46,7 @@ namespace BoardGameClub.Infrastructure.DependencyInjection
         {
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IBoardGameRepository, BoardGameRepository>();
+            services.AddHttpClient<IBggService, BggService>("bgg");
         }
     }
 }
