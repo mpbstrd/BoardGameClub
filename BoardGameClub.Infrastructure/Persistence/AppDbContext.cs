@@ -58,25 +58,6 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("decimal(3, 2)")
                 .HasColumnName("weight");
 
-            entity.HasMany(d => d.Mechanisms).WithMany(p => p.BoardGames)
-                .UsingEntity<Dictionary<string, object>>(
-                    "BoardGameMechanism",
-                    r => r.HasOne<Mechanism>().WithMany()
-                        .HasForeignKey("MechanismId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__board_gam__mecha__6A30C649"),
-                    l => l.HasOne<BoardGame>().WithMany()
-                        .HasForeignKey("BoardGameId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__board_gam__board__693CA210"),
-                    j =>
-                    {
-                        j.HasKey("BoardGameId", "MechanismId").HasName("PK__board_ga__EC44D610A290371A");
-                        j.ToTable("board_game_mechanisms");
-                        j.IndexerProperty<int>("BoardGameId").HasColumnName("board_game_id");
-                        j.IndexerProperty<int>("MechanismId").HasColumnName("mechanism_id");
-                    });
-
             entity.HasMany(d => d.Publishers).WithMany(p => p.BoardGames)
                 .UsingEntity<Dictionary<string, object>>(
                     "BoardGamePublisher",

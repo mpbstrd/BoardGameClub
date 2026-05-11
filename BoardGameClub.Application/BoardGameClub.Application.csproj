@@ -5,6 +5,7 @@
     <ProjectReference Include="..\BoardGameClub.Shared\BoardGameClub.Shared.csproj" />
 	<Folder Include="Features\BoardGames\AddGame\" />
 	<Folder Include="Features\BoardGames\UpdateGame\" />
+	<Folder Include="Features\Mechanics\GetMechanics\" />
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Members\UpdateMember\" />
 	<Folder Include="Features\Sessions\GetSessions\" />
