@@ -1,5 +1,45 @@
 # BoardGameClub API
-- An API made for Friday Board Game Club
+
+A RESTful API built for managing a board game club ecosystem.  
+This project provides backend services for handling members, board games, events, sessions, collections, and club-related operations.
+
+Designed with scalability and maintainability in mind using ASP.NET and modern backend development practices.
+
+## Features
+
+- Member management
+- Board game catalog integration
+- Event and game session tracking
+- Collection and inventory management
+- Authentication and authorization
+- RESTful API architecture
+- Database-driven persistence
+- External integration support (e.g. BoardGameGeek API)
+
+## Tech Stack
+
+- .NET Core 10
+- Entity Framework
+- SQL Server
+- REST API
+- LINQ
+- Dependency Injection
+- Git & GitHub
+- Azure
+
+## Purpose
+
+The goal of this project is to provide a centralized backend system for a board game club where members can:
+
+- Discover and manage games
+- Organize play sessions and events
+- Track collections and participation
+- Integrate external board game data
+- Support future web or mobile applications
+
+## Status
+
+Currently under active development.
 
 
 ## Scaffolding Tool
